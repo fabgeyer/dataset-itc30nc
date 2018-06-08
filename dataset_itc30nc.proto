@@ -1,0 +1,97 @@
+/*
+MIT License
+
+Copyright (c) 2018 Fabien Geyer <fgeyer@net.in.tum.de>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+syntax = "proto2";
+
+package nc;
+
+message TokenBucketFlow {
+	required uint32 id = 1;
+
+	/* Token bucket parameters */
+	required double rate = 2;
+	required double burst = 3;
+
+	/* Represents the path of servers taken by the flow */
+	repeated uint32 path = 4;
+}
+
+message RateLatencyServer {
+	required uint32 id = 1;
+
+	/* Rate latency parameters */
+	required double rate = 2;
+	required double latency = 3;
+}
+
+message Network {
+	/* Each network is identified using two identifier 'id' and 'runid' */
+	required uint32 id = 1;
+	required uint32 runid = 2;
+
+	/* List of servers in the network */
+	repeated RateLatencyServer server = 3;
+
+	/* List of flows in the network */
+	repeated TokenBucketFlow flow = 4;
+}
+
+message Dataset {
+	repeated Network network = 1;
+}
+
+/* Numerical results from evaluating with DiscoDNC 2.4.0 */
+message Results {
+	/* Network and flow identifiers */
+	repeated uint32 netid = 1 [packed=true];
+	repeated uint32 netrunid = 2 [packed=true];
+	repeated uint32 flowid = 3 [packed=true];
+
+	/* Results with TotalFlowAnalysis and ArrivalBoundMethod.PBOO_PER_HOP */
+	repeated double tfa_ab_pboo_per_hop = 4 [packed=true];
+	/* Results with TotalFlowAnalysis and ArrivalBoundMethod.PMOO */
+	repeated double tfa_ab_pmoo = 5 [packed=true];
+	/* Results with TotalFlowAnalysis and ArrivalBoundMethod.PER_FLOW_SFA */
+	repeated double tfa_ab_per_flow_sfa = 6 [packed=true];
+	/* Results with TotalFlowAnalysis and ArrivalBoundMethod.PER_FLOW_PMOO */
+	repeated double tfa_ab_per_flow_pmoo = 7 [packed=true];
+
+	/* Results with SeparateFlowAnalysis and ArrivalBoundMethod.PBOO_PER_HOP */
+	repeated double sfa_ab_pboo_per_hop = 8 [packed=true];
+	/* Results with SeparateFlowAnalysis and ArrivalBoundMethod.PMOO */
+	repeated double sfa_ab_pmoo = 9 [packed=true];
+	/* Results with SeparateFlowAnalysis and ArrivalBoundMethod.PER_FLOW_SFA */
+	repeated double sfa_ab_per_flow_sfa = 10 [packed=true];
+	/* Results with SeparateFlowAnalysis and ArrivalBoundMethod.PER_FLOW_PMOO */
+	repeated double sfa_ab_per_flow_pmoo = 11 [packed=true];
+
+	/* Results with PmooAnalysis and ArrivalBoundMethod.PBOO_PER_HOP */
+	repeated double pmoo_ab_pboo_per_hop = 12 [packed=true];
+	/* Results with PmooAnalysis and ArrivalBoundMethod.PMOO */
+	repeated double pmoo_ab_pmoo = 13 [packed=true];
+	/* Results with PmooAnalysis and ArrivalBoundMethod.PER_FLOW_SFA */
+	repeated double pmoo_ab_per_flow_sfa = 14 [packed=true];
+	/* Results with PmooAnalysis and ArrivalBoundMethod.PER_FLOW_PMOO */
+	repeated double pmoo_ab_per_flow_pmoo = 15 [packed=true];
+}
