@@ -1,6 +1,6 @@
 # The Case for a Network Calculus Heuristic: Using Insights from Data for Tighter Bounds
 
-This repository contains the dataset used for the paper _"The Case for a Network Calculus Heuristic: Using Insights from Data for Tighter Bounds"_ published at the [2018 International Workshop on Network Calculus and Applications (NetCal 2018)](https://itc30.org/en/workshops/netcal.html). We refer to the paper for a full explanation of the methodology used for generating the dataset.
+This repository contains the dataset used for the paper [_"The Case for a Network Calculus Heuristic: Using Insights from Data for Tighter Bounds"_](https://dx.doi.org/10.1109/ITC30.2018.10060) published at the [2018 International Workshop on Network Calculus and Applications (NetCal 2018)](https://itc30.org/en/workshops/netcal.html). We refer to the paper for a full explanation of the methodology used for generating the dataset.
 
 
 ## Reading the dataset
@@ -53,5 +53,6 @@ If you use this dataset for your research, please include the following referenc
 	year      = {2018},
 	month     = sep,
 	address   = {Vienna, Austria},
+	doi       = {10.1109/ITC30.2018.10060},
 }
 ```
