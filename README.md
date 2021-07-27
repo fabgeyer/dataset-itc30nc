@@ -56,3 +56,7 @@ If you use this dataset for your research, please include the following referenc
 	doi       = {10.1109/ITC30.2018.10060},
 }
 ```
+
+## License
+
+The data in this repository is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/).
